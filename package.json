@@ -1,0 +1,19 @@
+{
+  "name": "rest-urugten",
+  "version": "1.0.0",
+  "description": "Netguru REST API recruitment task",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Svaigas/rest-urugten.git"
+  },
+  "author": "Mateusz Adamiec",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Svaigas/rest-urugten/issues"
+  },
+  "homepage": "https://github.com/Svaigas/rest-urugten#readme"
+}
