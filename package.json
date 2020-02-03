@@ -6,6 +6,9 @@
   "scripts": {
     "test": "test"
   },
+  "engines": {
+    "node": "12.14.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Svaigas/rest-urugten.git"
