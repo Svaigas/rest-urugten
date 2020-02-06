@@ -1,13 +1,13 @@
 import mongoose from 'mongoose'
 
-export function catchError (cb) {
+export function catchError(cb) {
   return (req, res, next) => {
     Promise.resolve(cb(req, res, next))
-      .catch(next)
+        .catch(next)
   }
 }
 
-export function normalizeParams (reqParams) {
+export function normalizeParams(reqParams) {
   return {
     i: reqParams.id,
     t: reqParams.title,
@@ -16,7 +16,7 @@ export function normalizeParams (reqParams) {
   }
 }
 
-export function normalizeMovie (movie) {
+export function normalizeMovie(movie) {
   return {
     _id: new mongoose.Types.ObjectId(),
     title: movie.Title,
@@ -46,7 +46,7 @@ export function normalizeMovie (movie) {
   }
 }
 
-export function normalizeComment (comment) {
+export function normalizeComment(comment) {
   return {
     _id: new mongoose.Types.ObjectId(),
     body: comment.body,
@@ -55,10 +55,10 @@ export function normalizeComment (comment) {
   }
 }
 
-export function countParams (page,perPage){
+export function countParams(page, perPage) {
   const parsedPage = parseInt(page, 10)
-  const parsedPerPage = parseInt(perPage,10)
-  const skipped = perPage * page
+  const parsedPerPage = parseInt(perPage, 10)
+  const skipped = perPage * parsedPage
 
   return { parsedPerPage, skipped }
 }

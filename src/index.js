@@ -7,12 +7,12 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 app.use(bodyParser.urlencoded({
-    extended: true
+  extended: true
 }))
 app.use(bodyParser.json())
 
 app.use('/api/v1', routesV1)
 
 app.listen(PORT, async () => {
-    console.log(`Server is listening on port: ${PORT}`)
+  console.log(`Server is listening on port: ${PORT}`)
 })

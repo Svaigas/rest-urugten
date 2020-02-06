@@ -21,16 +21,16 @@ export function postMovieData(req, res) {
       ...params,
       apikey: apiKey
     }
-  }).then(function(axiosData){
+  }).then(function(axiosData) {
     const { data } = axiosData
-    if(data.Response === 'False') {
+    if (data.Response === 'False') {
       res.sendStatus(404)
     } else {
       return data
     }
-  }).then(function(data){
+  }).then(function(data) {
     const query = Movie.where({ imdbId: data.imdbID })
-    query.findOne(function (err, movie) {
+    query.findOne(function(err, movie) {
       if (err) {
         res.sendStatus(500).json({ err })
       } else if (movie) {
@@ -41,18 +41,18 @@ export function postMovieData(req, res) {
         res.json(data)
       }
     })
-  }).catch(err => {
+  }).catch((err) => {
     res.sendStatus(500).json({ err })
   })
 }
 
 export function getMoviesList(req, res) {
   const { page, perPage } = req.query
-  const { parsedPerPage, skipped } = countParams(page,perPage)
+  const { parsedPerPage, skipped } = countParams(page, perPage)
 
   const query = Movie.find().sort('title').skip(skipped).limit(parsedPerPage)
-  query.exec(function (err,movies){
-    if(err) res.sendStatus(500).json({ err })
+  query.exec(function(err, movies) {
+    if (err) res.sendStatus(500).json({ err })
     else res.json(movies)
   })
 }

@@ -22,9 +22,9 @@ export const validatePOSTcomments = celebrate({
     author: Joi.string().required(),
     body: Joi.string().required(),
     movieId: Joi
-      .string()
-      .regex(mongoIdRegexExpr)
-      .required()
-      .error(new Error('Invalid Object ID'))
+        .string()
+        .regex(mongoIdRegexExpr)
+        .required()
+        .error(new Error('Invalid Object ID'))
   })
 })
