@@ -62,3 +62,14 @@ export function countParams(page, perPage) {
 
   return { parsedPerPage, skipped }
 }
+
+export function verifyToken(req, res, next) {
+  const bearerHead = req.headers['authorization']
+  if (typeof bearerHead !== 'undefined') {
+    const bearerToken = bearerHead.split(' ')[1]
+    req.token = bearerToken
+    next()
+  } else {
+    res.sendStatus(403)
+  }
+}

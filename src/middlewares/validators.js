@@ -1,5 +1,6 @@
 const { celebrate, Joi, Segments } = require('celebrate')
 const mongoIdRegexExpr = /^[0-9a-fA-F]{24}$/
+const emailRegexExpr = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
 
 export const validateGET = celebrate({
   [Segments.QUERY]: Joi.object({
@@ -26,5 +27,15 @@ export const validatePOSTcomments = celebrate({
         .regex(mongoIdRegexExpr)
         .required()
         .error(new Error('Invalid Object ID'))
+  })
+})
+
+export const validatePOSTlogin = celebrate({
+  [Segments.BODY]: Joi.object({
+    email: Joi
+      .string()
+      .regex(emailRegexExpr)
+      .required()
+      .error(new Error('Invalid email'))
   })
 })
