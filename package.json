@@ -9,6 +9,7 @@
     "prestart": "npm run -s build",
     "prepush": "npm run lint",
     "start": "nodemon --exec babel-node -- src",
+    "dev": "babel-node -- src",
     "test": "test"
   },
   "engines": {

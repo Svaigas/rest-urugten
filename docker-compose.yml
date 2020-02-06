@@ -1,0 +1,16 @@
+version: '2'
+services:
+  rest-urugten:
+    build: .
+    image: rest-urugten
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - MOVIES_API=http://www.omdbapi.com/
+      - MOVIES_API_KEY=74e1e0c1
+      - MONGODB_ATLAS_URL=rest-urugten-nrc7u.mongodb.net/test?retryWrites=true&w=majority
+      - MONGODB_USERNAME=admin
+      - MONGODB_PASSWORD=passw0rd
+    expose:
+      - "3000"
