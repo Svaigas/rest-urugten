@@ -16,32 +16,49 @@ export function normalizeParams (reqParams) {
   }
 }
 
-export function normalizeMovie (data) {
+export function normalizeMovie (movie) {
   return {
     _id: new mongoose.Types.ObjectId(),
-    title: data.Title,
-    imdbId: data.imdbID,
-    year: data.Year,
-    rated: data.Rated,
-    released: data.Released,
-    runtime: data.Runtime,
-    genre: data.Genre,
-    director: data.Director,
-    writer: data.Writer,
-    actors: data.Actors,
-    plot: data.Plot,
-    language: data.Language,
-    country: data.Country,
-    awards: data.Awards,
-    poster: data.Poster,
-    ratings: data.Ratings,
-    metascore: data.Metascore,
-    imdbRating: data.imdbRating,
-    imdbVotes: data.imdbVotes,
-    type: data.Type,
-    dvd: data.DVD,
-    boxOffice: data.boxOffice,
-    production: data.Production,
-    website: data.Website
+    title: movie.Title,
+    imdbId: movie.imdbID,
+    year: movie.Year,
+    rated: movie.Rated,
+    released: movie.Released,
+    runtime: movie.Runtime,
+    genre: movie.Genre,
+    director: movie.Director,
+    writer: movie.Writer,
+    actors: movie.Actors,
+    plot: movie.Plot,
+    language: movie.Language,
+    country: movie.Country,
+    awards: movie.Awards,
+    poster: movie.Poster,
+    ratings: movie.Ratings,
+    metascore: movie.Metascore,
+    imdbRating: movie.imdbRating,
+    imdbVotes: movie.imdbVotes,
+    type: movie.Type,
+    dvd: movie.DVD,
+    boxOffice: movie.boxOffice,
+    production: movie.Production,
+    website: movie.Website
   }
+}
+
+export function normalizeComment (comment) {
+  return {
+    _id: new mongoose.Types.ObjectId(),
+    body: comment.body,
+    author: comment.author,
+    movieId: comment.movieId
+  }
+}
+
+export function countParams (page,perPage){
+  const parsedPage = parseInt(page, 10)
+  const parsedPerPage = parseInt(perPage,10)
+  const skipped = perPage * page
+
+  return { parsedPerPage, skipped }
 }

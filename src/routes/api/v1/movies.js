@@ -1,8 +1,8 @@
 import axios from 'axios'
 import {} from 'dotenv/config'
-import { normalizeParams, normalizeMovie } from '../../../middlewares/helpers'
+import { normalizeParams, normalizeMovie, countParams } from '../../../middlewares/helpers'
 import mongoose from 'mongoose'
-import { Movie } from '../../../models/movie'
+import { Movie } from '../../../models/index'
 
 const apiUrl = process.env.MOVIES_API
 const apiKey = process.env.MOVEIS_API_KEY
@@ -46,12 +46,9 @@ export function postMovieData(req, res) {
   })
 }
 
-export async function getMoviesList(req, res) {
+export function getMoviesList(req, res) {
   const { page, perPage } = req.query
-
-  const parsedPage = parseInt(page, 10)
-  const parsedPerPage = parseInt(perPage,10)
-  const skipped = perPage * page
+  const { parsedPerPage, skipped } = countParams(page,perPage)
 
   const query = Movie.find().sort('title').skip(skipped).limit(parsedPerPage)
   query.exec(function (err,movies){

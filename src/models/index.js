@@ -27,4 +27,12 @@ const movieSchema = mongoose.Schema({
   website: String
 })
 
+const commentSchema = mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
+  body: String,
+  author: String,
+  movieId: mongoose.Schema.Types.ObjectId
+})
+
 export const Movie = mongoose.model('Movie', movieSchema)
+export const Comment = mongoose.model('Comment', commentSchema)
