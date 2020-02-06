@@ -51,4 +51,11 @@ And then catch returned value and set Authorization header to it
 $> npm test
 ```
 
+## Docker
+App can be automatically run by executing below line of code.
+In docker-compose file there is specified dev database with all needed env variables.
+
+```
+$> docker-compose up
+```
 Enjoy :-)
