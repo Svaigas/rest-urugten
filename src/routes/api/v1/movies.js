@@ -5,7 +5,7 @@ import mongoose from 'mongoose'
 import { Movie } from '../../../models/index'
 
 const apiUrl = process.env.MOVIES_API
-const apiKey = process.env.MOVEIS_API_KEY
+const apiKey = process.env.MOVIES_API_KEY
 const mongoUser = process.env.MONGODB_USERNAME
 const mongoPass = process.env.MONGODB_PASSWORD
 const mongoUrl = process.env.MONGODB_ATLAS_URL
