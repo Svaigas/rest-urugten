@@ -1,6 +1,10 @@
 const { celebrate, Joi, Segments } = require('celebrate')
 const mongoIdRegexExpr = /^[0-9a-fA-F]{24}$/
-const emailRegexExpr = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+const emailRegexExpr = new RegExp([
+  '[a-zA-Z0-9.!#$%&\'*+/=?^_`{|}~-]+@[a-zA-Z0-9]',
+  '(?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])',
+  '?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$'
+].join(''))
 
 export const validateGET = celebrate({
   [Segments.QUERY]: Joi.object({
@@ -20,7 +24,11 @@ export const validatePOSTmovies = celebrate({
 
 export const validatePOSTcomments = celebrate({
   [Segments.BODY]: Joi.object({
-    author: Joi.string().required(),
+    author: Joi
+        .string()
+        .regex(emailRegexExpr)
+        .required()
+        .error(new Error('Invalid author email')),
     body: Joi.string().required(),
     movieId: Joi
         .string()
@@ -33,9 +41,9 @@ export const validatePOSTcomments = celebrate({
 export const validatePOSTlogin = celebrate({
   [Segments.BODY]: Joi.object({
     email: Joi
-      .string()
-      .regex(emailRegexExpr)
-      .required()
-      .error(new Error('Invalid email'))
+        .string()
+        .regex(emailRegexExpr)
+        .required()
+        .error(new Error('Invalid email'))
   })
 })
