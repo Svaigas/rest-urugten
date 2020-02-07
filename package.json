@@ -5,12 +5,12 @@
   "main": "server.js",
   "scripts": {
     "build": "rimraf ./dist && babel ./src -d ./dist",
-    "lint": "eslint src/**",
+    "lint": "eslint src/** test/**",
     "prestart": "npm run -s build",
     "prepush": "npm run lint",
     "start": "nodemon --exec babel-node -- src",
     "dev": "babel-node -- src",
-    "test": "mocha --timeout 10000"
+    "test": "mocha --require babel-polyfill --require @babel/register --timeout 10000 --exit"
   },
   "engines": {
     "node": "12.14.0"
@@ -40,7 +40,9 @@
   "devDependencies": {
     "@babel/node": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
+    "babel-polyfill": "^6.26.0",
     "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "eslint": "^6.8.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-import": "^2.20.1",

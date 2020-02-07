@@ -16,3 +16,5 @@ app.use('/api/v1', routesV1)
 app.listen(PORT, async () => {
   console.log(`Server is listening on port: ${PORT}`)
 })
+
+module.exports = app
