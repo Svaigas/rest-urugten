@@ -10,7 +10,6 @@
     "prepush": "npm run lint",
     "dev": "nodemon --exec babel-node -- src",
     "start": "babel-node -- src",
-    "heroku-postbuild": "cd client && npm install",
     "test": "mocha --require babel-polyfill --require @babel/register --timeout 10000 --exit"
   },
   "engines": {
