@@ -4,12 +4,13 @@
   "description": "Netguru REST API recruitment task",
   "main": "src/index.js",
   "scripts": {
-    "build": "rimraf ./dist && babel ./src -d ./dist",
+    "build": "babel ./src -d ./dist",
     "lint": "eslint src/** test/**",
     "prestart": "npm run -s build",
     "prepush": "npm run lint",
-    "start": "nodemon --exec babel-node -- src",
-    "dev": "babel-node -- src",
+    "dev": "nodemon --exec babel-node -- src",
+    "start": "babel-node -- src",
+    "heroku-postbuild": "cd client && npm install",
     "test": "mocha --require babel-polyfill --require @babel/register --timeout 10000 --exit"
   },
   "engines": {
