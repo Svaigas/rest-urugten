@@ -2,14 +2,14 @@
   "name": "rest-urugten",
   "version": "1.0.0",
   "description": "Netguru REST API recruitment task",
-  "main": "src/index.js",
+  "main": "api/index.js",
   "scripts": {
-    "build": "babel ./src -d ./dist",
-    "lint": "eslint src/** test/**",
+    "build": "babel api -d ./dist",
+    "lint": "eslint api/** test/**",
     "prestart": "npm run -s build",
     "prepush": "npm run lint",
-    "dev": "nodemon --exec babel-node -- src",
-    "start": "babel-node -- src",
+    "dev": "nodemon --exec babel-node -- api",
+    "start": "babel-node -- api",
     "test": "mocha --require babel-polyfill --require @babel/register --timeout 10000 --exit"
   },
   "engines": {

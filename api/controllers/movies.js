@@ -1,8 +1,8 @@
 import axios from 'axios'
 import {} from 'dotenv/config'
-import { normalizeParams, normalizeMovie, countParams } from '../../../middlewares/helpers'
+import { normalizeParams, normalizeMovie, countParams } from '../middlewares/helpers'
 import mongoose from 'mongoose'
-import { Movie } from '../../../models/index'
+import { Movie } from '../models/index'
 
 const apiUrl = process.env.MOVIES_API
 const apiKey = process.env.MOVIES_API_KEY
@@ -13,6 +13,17 @@ const mongoUrl = process.env.MONGODB_ATLAS_URL
 mongoose.set('useUnifiedTopology', true)
 mongoose.set('useNewUrlParser', true)
 mongoose.connect(`mongodb+srv://${mongoUser}:${mongoPass}@${mongoUrl}`)
+
+export function getMoviesList(req, res) {
+  const { page, perPage } = req.query
+  const { parsedPerPage, skipped } = countParams(page, perPage)
+
+  const query = Movie.find().sort('title').skip(skipped).limit(parsedPerPage)
+  query.exec(function(err, movies) {
+    if (err) res.sendStatus(500).json({ err })
+    else res.json(movies)
+  })
+}
 
 export function postMovieData(req, res) {
   const params = normalizeParams(req.body)
@@ -46,13 +57,3 @@ export function postMovieData(req, res) {
   })
 }
 
-export function getMoviesList(req, res) {
-  const { page, perPage } = req.query
-  const { parsedPerPage, skipped } = countParams(page, perPage)
-
-  const query = Movie.find().sort('title').skip(skipped).limit(parsedPerPage)
-  query.exec(function(err, movies) {
-    if (err) res.sendStatus(500).json({ err })
-    else res.json(movies)
-  })
-}
